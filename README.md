@@ -21,17 +21,17 @@ Replace `PORT` with the USB serial port.
 
 ## Install
 
-With the board connected over USB and `mpremote` 1.29 or newer, run from this checkout:
+With the board connected over USB, use `mpremote` 1.29 or newer:
 
 ```sh
-mpremote mip install ./package.json
+mpremote mip install github:mattytrentini/m5stack-core-matrix-app
 mpremote exec 'import corematrix_demo; corematrix_demo.run()'
 ```
 
 If multiple boards are attached, put `connect PORT` before `mip` or `exec`.
-After hosting this repository, pass its `package.json` URL instead. On a board
-already connected to Wi-Fi, the same URL works with `mip.install(url)`.
-The manifest uses paths relative to itself for files in this repository.
+From a local checkout, `mpremote mip install ./package.json` also works.
+On a board connected to Wi-Fi, use
+`mip.install("github:mattytrentini/m5stack-core-matrix-app")`.
 
 ## Demo
 
@@ -53,19 +53,10 @@ Grove power and PM1 sleep/wake configuration are not changed by the demo.
 | Stamp Timer Power2 (M5PM1) | [M5Stack UiFlow2](https://github.com/m5stack/uiflow-micropython/blob/a61a29409f09f1f4bebae05e15c4bd6dcc4956b6/m5stack/libs/driver/m5pm1.py), used unchanged | MIT |
 | M5IOE1 I/O expander | [M5Stack UiFlow2](https://github.com/m5stack/uiflow-micropython/blob/a61a29409f09f1f4bebae05e15c4bd6dcc4956b6/m5stack/libs/driver/m5ioe1.py), used unchanged | MIT |
 | BMI270 accelerometer and gyroscope | [micropython-lib](https://github.com/micropython/micropython-lib/tree/master/micropython/drivers/imu/bmi270), used unchanged | MIT |
-| TM1680 white LED matrix | `tm1680.py` in this repository; [datasheet](https://datasheet.lcsc.com/datasheet/pdf/11c225efe9ad4391ba4fc8ffaab5702e.pdf?productCode=C84836) and [M5GFX panel](https://github.com/m5stack/M5GFX/blob/master/src/lgfx/v1/panel/Panel_TM1680.inl) as protocol and wiring references | MIT |
+| TM1680 white LED matrix | [micropython-tm1680](https://github.com/mattytrentini/micropython-tm1680), installed as a dependency | MIT |
 
-`tm1680.json` installs only the TM1680 driver. `TM1680(i2c, address=0x72)`
-expects an already powered display with CoreMatrix-compatible 16×16 wiring.
-It is a native one-bit `framebuf.FrameBuffer`: call `pixel()`, `text()`, or
-other drawing methods, then `show()`. `brightness(0)` blanks the display
-without losing the drawing; levels 1–16 set global PWM duty.
-
-[PixelFramebuffer](https://github.com/mattytrentini/micropython-pixel-framebuf)
-(MIT) adapts RGB565 to addressable RGB LEDs and converts pixels one at a time.
-The TM1680 instead takes packed monochrome data. Its driver uses a 32-byte
-framebuffer and a reusable 33-byte transmit buffer, and writes the whole
-image in one I2C transaction.
+The application powers the display and instantiates the TM1680 driver.
+See the driver repository for standalone installation and framebuffer usage.
 
 ## Hardware check
 
