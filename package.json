@@ -1,0 +1,13 @@
+{
+  "urls": [
+    ["corematrix.py", "corematrix.py"],
+    ["corematrix_demo.py", "corematrix_demo.py"],
+    ["tm1680.py", "tm1680.py"]
+  ],
+  "deps": [
+    ["github:m5stack/uiflow-micropython/m5stack/libs/driver/m5pm1.py", "a61a29409f09f1f4bebae05e15c4bd6dcc4956b6"],
+    ["github:m5stack/uiflow-micropython/m5stack/libs/driver/m5ioe1.py", "a61a29409f09f1f4bebae05e15c4bd6dcc4956b6"],
+    ["bmi270", "1.0.0"]
+  ],
+  "version": "0.1.0"
+}
