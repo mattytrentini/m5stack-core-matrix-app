@@ -43,8 +43,26 @@ For your own program, `from corematrix import CoreMatrix` exposes `i2c`, `pm1`,
 `ioe1`, `imu` and `display` on a `CoreMatrix()` instance. `buttons()` returns
 an active-high pressed mask (`BUTTON_A`, `BUTTON_B`, `BUTTON_C`) and
 `power_source()` returns the PM1 supply mask. `deinit()` blanks the display
-and turns off its rail if the instance enabled it. Charging, SD, buzzer,
-Grove power and PM1 sleep/wake configuration are not changed by the demo.
+and turns off its rail if the instance enabled it. The tilt demo does not
+change charging, SD, buzzer, Grove power or PM1 sleep/wake configuration.
+
+## Step16 encoder demo
+
+Connect the [M5Stack Unit Step16](https://docs.m5stack.com/en/unit/Unit_Step16)
+to Grove Port A. Follow the [installation instructions](#install) to install
+the app and its Step16 dependency, then run:
+
+```sh
+mpremote exec 'import step16_demo; step16_demo.run()'
+```
+
+Turn the knob to show its absolute detent (`0`–`F`) and a matching bar on the
+CoreMatrix. Ctrl-C exits. For a bounded run, pass `samples=30`. The demo powers
+Port A through the M5IOE1 and restores its prior pin configuration on exit.
+It does not write any Step16 settings.
+
+For standalone installation and use on other boards, see
+[micropython-step16](https://github.com/mattytrentini/micropython-step16).
 
 ## Drivers
 
@@ -54,6 +72,7 @@ Grove power and PM1 sleep/wake configuration are not changed by the demo.
 | M5IOE1 I/O expander | [M5Stack UiFlow2](https://github.com/m5stack/uiflow-micropython/blob/a61a29409f09f1f4bebae05e15c4bd6dcc4956b6/m5stack/libs/driver/m5ioe1.py), used unchanged | MIT |
 | BMI270 accelerometer and gyroscope | [micropython-lib](https://github.com/micropython/micropython-lib/tree/master/micropython/drivers/imu/bmi270), used unchanged | MIT |
 | TM1680 white LED matrix | [micropython-tm1680](https://github.com/mattytrentini/micropython-tm1680), installed as a dependency | MIT |
+| Step16 rotary encoder | [micropython-step16](https://github.com/mattytrentini/micropython-step16), installed as a dependency | MIT |
 
 The application powers the display and instantiates the TM1680 driver.
 See the driver repository for standalone installation and framebuffer usage.
