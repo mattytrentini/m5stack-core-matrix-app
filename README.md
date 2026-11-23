@@ -61,8 +61,9 @@ CoreMatrix. Ctrl-C exits. For a bounded run, pass `samples=30`. The demo powers
 Port A through the M5IOE1 and restores its prior pin configuration on exit.
 It does not write any Step16 settings.
 
-For standalone installation and use on other boards, see
-[micropython-step16](https://github.com/mattytrentini/micropython-step16).
+The installed driver also exposes `encoder.led` for RGB power, brightness,
+and color in your own programs. See [micropython-step16](https://github.com/mattytrentini/micropython-step16)
+for the RGB API and standalone installation.
 
 ## Drivers
 
