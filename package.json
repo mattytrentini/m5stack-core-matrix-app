@@ -11,5 +11,5 @@
     ["github:mattytrentini/micropython-tm1680", "a274f63a5dbf1c553b38cf8b4c985e25873b349b"],
     ["github:mattytrentini/micropython-step16", "823f63ac2381b8fccfbd4a29c9c72f298e1dca6d"]
   ],
-  "version": "0.1.3"
+  "version": "0.1.4"
 }
