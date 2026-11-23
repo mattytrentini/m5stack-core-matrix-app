@@ -2,14 +2,15 @@
   "urls": [
     ["corematrix.py", "corematrix.py"],
     ["corematrix_demo.py", "corematrix_demo.py"],
-    ["step16_demo.py", "step16_demo.py"]
+    ["step16_demo.py", "step16_demo.py"],
+    ["dof10_demo.py", "dof10_demo.py"]
   ],
   "deps": [
     ["github:m5stack/uiflow-micropython/m5stack/libs/driver/m5pm1.py", "a61a29409f09f1f4bebae05e15c4bd6dcc4956b6"],
     ["github:m5stack/uiflow-micropython/m5stack/libs/driver/m5ioe1.py", "a61a29409f09f1f4bebae05e15c4bd6dcc4956b6"],
-    ["bmi270", "1.0.0"],
+    ["github:mattytrentini/m5stack-unit-dof10", "7c984e910acea52694ec38c4255e64a37c17d8ec"],
     ["github:mattytrentini/micropython-tm1680", "a274f63a5dbf1c553b38cf8b4c985e25873b349b"],
     ["github:mattytrentini/micropython-step16", "823f63ac2381b8fccfbd4a29c9c72f298e1dca6d"]
   ],
-  "version": "0.1.4"
+  "version": "0.1.5"
 }

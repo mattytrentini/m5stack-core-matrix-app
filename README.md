@@ -30,6 +30,8 @@ mpremote exec 'import corematrix_demo; corematrix_demo.run()'
 
 If multiple boards are attached, put `connect PORT` before `mip` or `exec`.
 From a local checkout, `mpremote mip install ./package.json` also works.
+When using Windows `mpremote.exe` from WSL, pass
+`"$(wslpath -m "$PWD/package.json")"` instead of `./package.json`.
 On a board connected to Wi-Fi, use
 `mip.install("github:mattytrentini/m5stack-core-matrix-app")`.
 
@@ -66,6 +68,22 @@ The installed driver also exposes `encoder.led` for RGB power, brightness,
 and color in your own programs. See [micropython-step16](https://github.com/mattytrentini/micropython-step16)
 for the RGB API and standalone installation.
 
+## DoF10 sensor demo
+
+Connect the [M5Stack Unit DoF10](https://docs.m5stack.com/en/unit/Unit_DoF10)
+to Grove Port A. Set its BMI270 address switch to **1** (`0x69`), since the
+CoreMatrix's onboard BMI270 already uses `0x68`. The app install pulls in
+all three drivers through [m5stack-unit-dof10](https://github.com/mattytrentini/m5stack-unit-dof10).
+
+```sh
+mpremote exec 'import dof10_demo; dof10_demo.run()'
+```
+
+Move the unit and watch the acceleration, angular velocity, magnetic field,
+temperature, and pressure in the terminal. Ctrl-C exits, or pass `samples=5`
+for a bounded run. The demo restores the prior Grove power configuration
+on exit.
+
 ## Drivers
 
 | Device | Source | License |
@@ -75,6 +93,7 @@ for the RGB API and standalone installation.
 | BMI270 accelerometer and gyroscope | [micropython-lib](https://github.com/micropython/micropython-lib/tree/master/micropython/drivers/imu/bmi270), used unchanged | MIT |
 | TM1680 white LED matrix | [micropython-tm1680](https://github.com/mattytrentini/micropython-tm1680), installed as a dependency | MIT |
 | Step16 rotary encoder | [micropython-step16](https://github.com/mattytrentini/micropython-step16), installed as a dependency | MIT |
+| DoF10 magnetometer and barometer | [BMM350](https://github.com/SolderedElectronics/Soldered-BMM350-MicroPython-Library) and [SPA06-003](https://github.com/mattytrentini/micropython-spa06-003), installed by the DoF10 bundle | GPL-3.0 and MIT, respectively |
 
 The application powers the display and instantiates the TM1680 driver.
 See the driver repository for standalone installation and framebuffer usage.
